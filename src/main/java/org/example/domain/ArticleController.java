@@ -14,6 +14,7 @@ public class ArticleController {
     int WRONG_VALUE = -1;
 
     public void add(){
+        // 등록
         System.out.print("게시물 제목을 입력해주세요 : ");
         String title = scan.nextLine();
         System.out.print("게시물 내용을 입력해주세요 : ");
@@ -22,11 +23,13 @@ public class ArticleController {
         System.out.println("게시물이 등록되었습니다.");
     }
     public void list(){
+        // 리스트
         ArrayList<Article>articleList = articleRepository.findAll();
         articleView.listArticle(articleList);
     }
     public void update(){
-        System.out.println("수정할 게시물 번호 : ");
+        //수정
+        System.out.print("수정할 게시물 번호 : ");
         int inputId = getParam(scan.nextLine(),WRONG_VALUE);
         if (inputId == WRONG_VALUE){
             return;
@@ -44,6 +47,7 @@ public class ArticleController {
         System.out.printf("%d번 게시물이 수정되었습니다.\n", inputId);
     }
     public void detail(){
+        // 상세보기
         System.out.print("상세보기 할 게시물 번호를 입력해주세요 : ");
         int inputId = getParam(scan.nextLine(),WRONG_VALUE);
         if (inputId == WRONG_VALUE){
@@ -58,6 +62,7 @@ public class ArticleController {
         articleView.detailArticle(article);
     }
     public void delete(){
+        //삭제
         System.out.print("삭제할 게시물 번호 : ");
         int inputId = getParam(scan.nextLine(),WRONG_VALUE);
         if (inputId == WRONG_VALUE){
@@ -72,6 +77,7 @@ public class ArticleController {
         System.out.printf("%d번 게시물이 삭제되었습니다.",inputId);
     }
     public void search(){
+        // 키워드 찾기
         System.out.print("검색 키워드를 입력해주세요 : ");
         String keyword = scan.nextLine();
         ArrayList<Article> searchedList = articleRepository.keywordArticle(keyword);

@@ -10,12 +10,13 @@ public class ArticleRepository {
     int startId = 1;
 
     // 재시험^^
-    public void keywordArticle(String keyword){
+    public ArrayList<Article> keywordArticle(String keyword){
         ArrayList<Article>searchedList = new ArrayList<>();
         Article article = new Article();
         if (article.getTitle().contains(keyword)){
-            return;
+            return searchedList;
         }
+        return searchedList;
     }
 
     public Article idArticle(int id){
@@ -37,8 +38,10 @@ public class ArticleRepository {
     public ArrayList<Article>findAll(){
         return articleList;
     }
-    public void addArticle(String title, String body){
+    public Article addArticle(String title, String body){
         Article article = new Article(startId, title, body, 0, commonUtill.getDateTime());
+        articleList.add(article);
         startId++;
+        return article;
     }
 }
